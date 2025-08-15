@@ -25,10 +25,10 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>High-Level Deployment and Configuration Steps</h2>
 
-- Step 1
-- Step 2
-- Step 3
-- Step 4
+- Step 1 Set up Active Directory 
+- Step 2 Join computer to the domain 
+- Step 3 Create Users 
+- Step 4 Allow/Practice loging in as users
 
 <h2>Deployment and Configuration Steps</h2>
 
