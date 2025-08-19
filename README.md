@@ -22,8 +22,8 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <h2>High-Level Deployment and Configuration Steps</h2>
 
 - Step 1 Set up Active Directory 
-- Step 2 Join computer to the domain & Create Users 
-- Step 3 Allow/Practice logging in as users
+- Step 2 Join computer to the domain
+- Step 3 Create Users &n Allow/Practice logging in as users
 
 <h2>Deployment and Configuration Steps</h2>
 
@@ -40,7 +40,8 @@ Step one you are going to create a resource group and name it Active Directory L
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="1379" height="820" alt="Screenshot 2025-08-17 at 2 58 20 PM" src="https://github.com/user-attachments/assets/efbd4af6-a6e0-4246-92ed-85bca186f474" />
+
 </p>
 <p>
 First thing you're going to do is go to dc-1 click start, server manager, then "under configure this local server" you’ll go to “add roles and features”, under server roles you’re going to select Active Directory domain services, and then click install.
@@ -60,4 +61,18 @@ Add Mary smith to the domain admins security group. go to Mary smith in _admins 
 Next join client-1 to the domain 
 To join to the domain log in as local labuser and then go to system/rename this pc(advanced) and connect it to the domain by selecting domain and typing mydomain.com to join, go to system and Remote Desktop and add domain users to enable all users to access and log into this computer
 </p>
+<img width="778" height="578" alt="Screenshot 2025-08-17 at 3 58 19 PM" src="https://github.com/user-attachments/assets/4234753e-ec45-439f-9de1-5ad04d8f289b" />
+
 <br />
+
+Creating users and Allow/Practice logging in as users
+
+Log into dc-1 as admin and go to powershell ISE as administrator 
+
+Create a new file and you will paste the script/code into it - the code will run and what it will do is generate 1000 random users. 
+
+After the users are available in the OU _EMPLOYEES you can select any one of them. (Each user will have the same Password1) 
+Now you can use any name inside of the _EMPLOYEES OU	and sign into client-1 with mydomain.com\(users name) 
+
+<img width="1209" height="651" alt="Screenshot 2025-08-19 at 4 54 17 PM" src="https://github.com/user-attachments/assets/9506fcba-da7b-4122-84a5-2fb134832105" />
+
