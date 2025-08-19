@@ -7,10 +7,6 @@
 This tutorial outlines the implementation of on-premises Active Directory within Azure Virtual Machines.<br />
 
 
-<h2>Video Demonstration</h2>
-
-- ### [YouTube: How to Deploy on-premises Active Directory within Azure Compute](https://www.youtube.com)
-
 <h2>Environments and Technologies Used</h2>
 
 - Microsoft Azure (Virtual Machines/Compute)
@@ -26,17 +22,20 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <h2>High-Level Deployment and Configuration Steps</h2>
 
 - Step 1 Set up Active Directory 
-- Step 2 Join computer to the domain 
-- Step 3 Create Users 
-- Step 4 Allow/Practice loging in as users
+- Step 2 Join computer to the domain & Create Users 
+- Step 3 Allow/Practice logging in as users
 
 <h2>Deployment and Configuration Steps</h2>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+  <img width="1322" height="465" alt="Screenshot 2025-08-16 at 8 37 39 PM" src="https://github.com/user-attachments/assets/ef96824d-5dec-4d14-88f3-6cd58acda734" />
+  <img width="1470" height="950" alt="Screenshot 2025-08-17 at 1 23 49 PM" src="https://github.com/user-attachments/assets/817016c4-f790-4ebc-9995-60e30dc8518e" />
+
+
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Step one you are going to create a resource group and name it Active Directory Lab. Next you will create a virtual machine named DC-1 (Domain Controller) and then set up the Virtual Network for that VM. After that you will create another virtual machine named client-1 which will interact with dc-1 but in order to ensure there are no connectivity issues you will have to set client-1’s DNS setting to dc-1’s private IP address. You will go to the dc-1 VM go to IP configurations in the settings and change the IP address settings from dynamic to static. Then log into dc-1 and change the firewall settings to off so you can test connectivity. Next you will go to client-1 VM, go to settings, DNS servers and change that to custom, and paste the private IP address of dc-1 so that client-1 can join the domain and anything searched will go through dc-1. Next you will open client-1 and ping dc-1’s private IP address to make sure you get a reply, and last you open powershell and run ipconfig /all and check the DNS server it should show dc-1’s private IP address.
 </p>
 <br />
 
@@ -44,6 +43,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+First thing you're going to do is go to dc-1 click start, server manager, then "under configure this local server" you’ll go to “add roles and features”, under server roles you’re going to select Active Directory domain services, and then click install.
+
+Next promote dc-1 as a domain controller - configure Active Directory to become domain  controller aka new forest as.
+
+Then in server manager on the dashboard youre going to click on the flag and click “promote this server to domain controller”- add a new forest and put mydomain.com as the title. Then keep clicking next until get to the install button…click that and it should automatically restart after its done installing.
+
+You will need to sign-in again to dc-1 but since the VM is now Domain Server you need to specify whether you are a local user or a domain user so for the User name you will need to write mydomain.com\labuser 
+
+Create domain admin user within the domain 
+Open Active Directory users and computers and create organizational unit called _EMPLOYEES and create another one named _ADMINS
+Create a new employee with any name you want “mary smith” with the username as mary_admin password Cyberlab123!
+
+Add Mary smith to the domain admins security group. go to Mary smith in _admins right click and go to properties/ member of / and add to domain admins and then apply now Mary Smith is a domain admin. 
+
+Next join client-1 to the domain 
+To join to the domain log in as local labuser and then go to system/rename this pc(advanced) and connect it to the domain by selecting domain and typing mydomain.com to join, go to system and Remote Desktop and add domain users to enable all users to access and log into this computer
 </p>
 <br />
