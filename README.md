@@ -75,4 +75,18 @@ After the users are available in the OU _EMPLOYEES you can select any one of the
 Now you can use any name inside of the _EMPLOYEES OU	and sign into client-1 with mydomain.com\(users name) 
 
 <img width="1209" height="651" alt="Screenshot 2025-08-19 at 4 54 17 PM" src="https://github.com/user-attachments/assets/9506fcba-da7b-4122-84a5-2fb134832105" />
+To make changes to accounts you have to go to group policy management console on the domain controller so the first thing you’ll do is log into the domain controller and double click start and select run then you’ll type gpmc.msc from there you will go to domains, mydomains.com, default domain policy. Right click and select edit from here your going to expand the following and 
 
+Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Account Lockout Policy.
+
+<img width="1218" height="664" alt="Screenshot 2025-08-19 at 6 11 45 PM" src="https://github.com/user-attachments/assets/4210a085-a99c-40bd-94fd-e37689dca8f8" />
+
+
+From here you will able to adjust or change the account lookout duration, account lockout threshold number of failed login attempts that will cause an account lockout, ability to reset account after it has been locked out.
+
+After you have made these changes it may take up to 90 minutes to accept new policy automatically or you can force it by going to the command line and typing gpupdate/force
+
+ 
+To reset passwords you can simply go to the users name, right click, go to password and reset it from there. 
+
+Like the password you can also enable or disable an account from clicking on the users name and making the necessary changes from there. 
