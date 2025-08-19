@@ -23,7 +23,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 - Step 1 Set up Active Directory 
 - Step 2 Join computer to the domain
-- Step 3 Create Users &n Allow/Practice logging in as users
+- Step 3 Create Users & Allow/Practice logging in as users
 
 <h2>Deployment and Configuration Steps</h2>
 
